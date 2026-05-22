@@ -1,0 +1,2371 @@
+/* Reset Core Base Layout Setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* DYNAMIC COLOR VARIABLES: 
+   Inka replace cheyadam chala easy! Ee parameters change chesthe core style continuous ga synchronize avthundi.
+*/
+:root {
+    --navbar-bg: #FFFFFF;         /* Pure white background for layout stability */
+    --pinterest-light: #F4F1EA;   /* Warm Cream/Beige structural background */
+    --pinterest-dark: black;    /* Deep Charcoal Brown / Black element focus */
+    --accent-gold:#c2b5a7;       /* Soft luxury wood tint / highlight effect */
+    --border-color: #E2E8F0;      /* Minimal slate subtle divider tint */
+}
+
+
+/* Header Container Logic */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--navbar-bg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    height: 90px;
+}
+
+/* Brand Logo Image Flex Alignment Layout Setup */
+.logo-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.brand-logo-img {
+    height: 75px;          /* Logo automatic view height boundary setup */
+    width: auto;           /* Aspect ratio balance maintaining parameter */
+    display: block;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+/* Subtle premium hover scale shift feedback response */
+.brand-logo-img:hover {
+    transform: scale(1.02);
+}
+
+/* Main Navigation Links Alignment Grid 
+   [CHANGE]: Justify-content padding balance core flex level mid shift layer wrapper handles tight layout.
+*/
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 100%;
+    margin-left: auto;     /* Pushes whole navigation group naturally next to the logo */
+    margin-right: 40px;    /* [FIXED]: Contact corner ki vellipokunda nav links system ni left ki center chesthundi */
+}
+
+.nav-links > li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.nav-item {
+    color: var(--pinterest-dark);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.92rem;
+    padding: 0 14px;       /* Spacing micro balanced across 9 items */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.3s ease;
+}
+
+.nav-item i {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+/* Active and Hover States Management */
+.nav-item:hover, .nav-item.active {
+    background-color: var(--pinterest-light);
+    color: var(--pinterest-dark);
+}
+
+/* Custom Dropdown System */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--navbar-bg);
+    min-width: 240px;
+    list-style: none;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    border-radius: 0 0 6px 6px;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 14px 20px;
+    color: var(--pinterest-dark);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.02);
+    transition: all 0.25s ease;
+}
+
+/* Dropdown Elements Background Hover Transition */
+.dropdown-menu li a:hover {
+    background-color: var(--pinterest-light);
+    padding-left: 25px; /* Premium smooth slide interaction */
+    color: var(--pinterest-dark);
+}
+
+/* Desktop Hover Visibility Configuration */
+@media (min-width: 1025px) {
+    .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    .dropdown:hover .nav-item i {
+        transform: rotate(180deg);
+    }
+}
+
+/* Mobile Toggle Hamburger Icon Styling */
+.menu-toggle {
+    display: none;
+    font-size: 1.6rem;
+    color: var(--pinterest-dark);
+    cursor: pointer;
+}
+
+/* RESPONSIVE DESIGN (MOBILE & TABLET BREAKPOINTS)
+   Clean multi-level collapsible view.
+*/
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 0 24px;
+    }
+
+    .nav-links {
+        margin-right: 0;    /* Reset desktop margin grids for mobile views */
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: var(--navbar-bg);
+        flex-direction: column;
+        align-items: flex-start;
+        overflow-y: auto;
+        padding: 20px 0;
+        transition: left 0.4s cubic-bezier(0.1, 1, 0.1, 1);
+        border-top: 1px solid var(--border-color);
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-links > li {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-item {
+        width: 100%;
+        padding: 16px 30px;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.02);
+    }
+
+    .dropdown-menu {
+        position: relative;
+        top: 0;
+        width: 100%;
+        max-height: 0;
+        opacity: 1;
+        visibility: visible;
+        overflow: hidden;
+        transform: none;
+        border: none;
+        box-shadow: none;
+        background-color: rgba(0, 0, 0, 0.01);
+        transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+    }
+
+    /* JavaScript Toggle target for Mobile View Collapse */
+    .dropdown.open .dropdown-menu {
+        max-height: 500px; /* Gives enough expansion limit */
+        transition: max-height 0.4s cubic-bezier(1, 0, 1, 0);
+    }
+
+    .dropdown.open .nav-item i {
+        transform: rotate(180deg);
+    }
+    
+    .dropdown-menu li a {
+        padding-left: 50px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* HERO SECTION CORE ENGINE SETUP 
+   Colors are connected to the main variable layers of your layout scheme 
+*/
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 8%;
+    /* Premium luxury furniture image setup link */
+    background: url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+    margin-top: 80px; /* Synchronizes height space for fixed desktop header */
+    overflow: hidden;
+}
+
+/* Linear color shading filter over background for high text readability focus */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(30, 28, 26, 0.85) 45%, rgba(30, 28, 26, 0.45) 100%);
+    z-index: 1;
+}
+
+/* Internal text alignment wrapper */
+.hero-container {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+}
+
+.hero-sub {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--accent-gold, #D4B28C);
+    display: block;
+    margin-bottom: 22px;
+    text-transform: uppercase;
+}
+
+.hero-title {
+    font-size: 3.8rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--pinterest-light, #F4F1EA);
+    margin-bottom: 38px;
+    letter-spacing: -0.5px;
+}
+
+/* Interactive Highlight Button Logic */
+.hero-actions {
+    display: flex;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--accent-gold, #D4B28C);
+    color: var(--pinterest-dark, #1E1C1A);
+    text-decoration: none;
+    padding: 16px 38px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 4px;
+    border: 1px solid var(--accent-gold, #D4B28C);
+    transition: all 0.35s ease;
+}
+
+.hero-btn i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+/* Elegant Scale & Outline Hover Shift Actions */
+.hero-btn:hover {
+    background-color: transparent;
+    color: var(--pinterest-light, #F4F1EA);
+    border-color: var(--pinterest-light, #F4F1EA);
+    box-shadow: 0 12px 30px rgba(212, 178, 140, 0.2);
+}
+
+.hero-btn:hover i {
+    transform: translateX(6px);
+}
+
+/* RESPONSIVE CONTROL GRAPH GRID (Handles Mobile Scalings Perfectly) */
+@media (max-width: 1024px) {
+    .hero-section {
+        padding: 0 5%;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .hero-overlay {
+        background: rgba(30, 28, 26, 0.75); /* Overall screen filter for portable items */
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        line-height: 1.3;
+    }
+    
+    .hero-actions {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.9rem;
+    }
+    .hero-btn {
+        padding: 14px 28px;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* About Section Engine with Plaster Wall Background Texture */
+.about-section {
+    position: relative;
+    width: 100%;
+    padding: 120px 0;
+    
+    /* Direct connection via precise path sequence mapping */
+    background-image: url('../images/bg.png') !important; 
+    background-repeat: repeat;
+    background-position: center center;
+    background-size: cover;
+    
+    color: var(--pinterest-dark, #1E1C1A);
+    overflow: hidden;
+    /* [FIX 1] Generates a solid stack index grid sequence on container */
+    z-index: 1; 
+}
+/* Subtle premium overlay to smoothly blend the text readability over the image texture */
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Blends the texture with your signature Pinterest light warm cream tone color */
+  
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Dynamic Core Row Alignment Grid Wrapper */
+.about-container {
+    position: relative;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 50px;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    z-index: 2; /* Content sits cleanly on top of the background overlay layer */
+}
+
+/* Left Grid Content Elements */
+.about-content-col {
+    flex: 1.2;
+}
+
+.about-tag {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--pinterest-dark);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.about-main-heading {
+    font-size: 2.2rem;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+}
+
+.about-main-heading strong {
+    font-weight: 700;
+    color: var(--pinterest-dark, #1E1C1A);
+}
+
+.about-para {
+    font-size: 1.05rem;
+    line-height: 1.75;
+      color: #120f0d;/* Dark premium graphite tone text layout for reading comfort */
+    margin-bottom: 24px;
+    text-align: justify;
+}
+
+.emphasis-text {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--pinterest-dark, #1E1C1A);
+    line-height: 1.7;
+}
+
+.final-quote {
+    margin-bottom: 0;
+    font-style: italic;
+    font-weight: 500;
+    border-left: 3px solid var(--pinterest-dark);
+    padding-left: 20px;
+    color: #1E1C1A;
+}
+
+/* Right Grid Architecture Picture Frame Setup */
+.about-image-col {
+    flex: 0.8;
+    display: flex;
+    justify-content: center;
+}
+
+.image-wrapper-frame {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 8px;
+    box-shadow: 0 30px 60px rgba(30, 28, 26, 0.15);
+}
+
+/* Luxury accent backing element lines styling */
+.image-wrapper-frame::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--pinterest-dark);
+    border-radius: 8px;
+    z-index: -1;
+    transition: all 0.4s ease;
+}
+
+.about-showcase-img {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+/* Absolute Floating Bottom Corner Brand Stamp Element */
+.luxury-badge {
+    position: absolute;
+    bottom: 30px;
+    left: -40px;
+    background-color: var(--pinterest-dark, #1E1C1A);
+    color: var(--pinterest-light, #F4F1EA);
+    padding: 15px 25px;
+    border-radius: 4px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.luxury-badge span {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Smooth Image Scale Interaction Setup */
+.image-wrapper-frame:hover .about-showcase-img {
+    transform: scale(1.03);
+}
+
+.image-wrapper-frame:hover::before {
+    top: -10px;
+    left: -10px;
+}
+
+/* MOBILE RESPONSIVE TUNING */
+@media (max-width: 1024px) {
+    .about-container {
+        flex-direction: column;
+        gap: 60px;
+        padding: 0 30px;
+    }
+
+    .about-main-heading {
+        font-size: 1.8rem;
+    }
+
+    .about-image-col {
+        width: 100%;
+    }
+
+    .about-showcase-img {
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-container {
+        padding: 0 20px;
+    }
+    
+    .luxury-badge {
+        left: 20px;
+        bottom: -20px;
+    }
+    
+    .image-wrapper-frame::before {
+        display: none; /* Safely drops outer wireframes on tight mobile view grids */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Popular Designs Core Base Grid */
+.popular-section {
+    width: 100%;
+    padding: 120px 0;
+    background-image: url('../images/bg.png'); 
+    background-size: cover;
+    background-repeat: repeat;
+    position: relative;
+    z-index: 1;
+}
+
+/* Translucent overlay matching clean architectural look */
+.popular-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(244, 241, 234, 0.88);
+    z-index: -1;
+}
+
+.popular-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Section Main Heading Badge */
+.section-title-block {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.main-badge {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: var(--accent-gold, #D4B28C);
+    text-transform: uppercase;
+}
+
+/* Master Category Stack Block Padding */
+.category-master-block {
+    margin-bottom: 80px;
+}
+
+.category-master-block:last-child {
+    margin-bottom: 0;
+}
+
+/* Row Headers Styling */
+.category-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(30, 28, 26, 0.1);
+    padding-bottom: 15px;
+}
+
+.category-subheading {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--pinterest-dark, #1E1C1A);
+    text-transform: capitalize;
+}
+
+/* Layout Swiper Button Wrappers definitions */
+.slider-nav-wrapper {
+    display: flex;
+    gap: 12px;
+}
+
+.custom-nav-btn {
+    position: static !important;
+    width: 44px !important;
+    height: 44px !important;
+    margin: 0 !important;
+    background-color: var(--pinterest-dark, #1E1C1A);
+    color: var(--pinterest-light, #F4F1EA) !important;
+    border-radius: 50%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+}
+
+.custom-nav-btn i {
+    font-size: 1.1rem;
+}
+
+.custom-nav-btn::after {
+    display: none !important; /* Drops standard blue icon vectors */
+}
+
+.custom-nav-btn:hover {
+    background-color: var(--accent-gold, #D4B28C);
+    color: var(--pinterest-dark, #1E1C1A) !important;
+}
+
+/* Swiper Content Area Limits constraints */
+.popular-swiper-container {
+    width: 100%;
+    padding: 10px 0 30px 0 !important;
+    overflow: hidden;
+}
+
+/* Luxury Interactive Slider Image Cards */
+.card-image-box {
+    position: relative;
+    width: 100%;
+    height: 360px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(30, 28, 26, 0.08);
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Floating Hover Text Activation Layer */
+.hover-overlay-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(30, 28, 26, 0.0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 2;
+    transition: all 0.4s ease;
+}
+
+.product-hover-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--pinterest-light, #F4F1EA);
+    letter-spacing: 1px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* INTERACTIVE CORNER HOVER DECORATIONS */
+.card-image-box:hover .product-img {
+    transform: scale(1.06);
+}
+
+.card-image-box:hover .hover-overlay-content {
+    background-color: rgba(30, 28, 26, 0.75);
+}
+
+.card-image-box:hover .product-hover-title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================
+   MOBILE & TABLET RESPONSIVE TUNING ENGINE 
+   ========================================== */
+@media (max-width: 1024px) {
+    .popular-container { padding: 0 30px; }
+    .category-subheading { font-size: 1.9rem; }
+    .card-image-box { height: 320px; }
+}
+
+@media (max-width: 768px) {
+    .popular-section { padding: 80px 0; }
+    .category-master-block { margin-bottom: 50px; }
+    .category-subheading { font-size: 1.6rem; }
+    .card-image-box { height: 280px; }
+    .custom-nav-btn { width: 38px !important; height: 38px !important; }
+}
+
+@media (max-width: 480px) {
+    .popular-container { padding: 0 20px; }
+    .category-header-row { margin-bottom: 20px; }
+    .category-subheading { font-size: 1.4rem; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   DYNAMIC METHODOLOGY TIMELINE ENGINE STYLE SETS
+   ========================================================================== */
+.process-section {
+    width: 100%;
+    padding: 40px 0;
+    background-image: url('../images/bg.png'); /* Automatic plaster wall sync placement */
+    background-size: cover;
+    background-repeat: repeat;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.process-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Clean brand tint matrix background mapping */
+    z-index: -1;
+    pointer-events: none;
+}
+
+.process-master-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.process-heading-block {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.process-badge {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--accent-gold, #D4B28C);
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.process-title-text {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--pinterest-dark, #1E1C1A);
+    letter-spacing: -0.5px;
+}
+
+/* ==========================================================================
+   STEPPERS TIMELINE NAVIGATION CONTROL BAR LINE
+   ========================================================================== */
+.timeline-tracker-outer {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 90px auto;
+    padding: 0 20px;
+}
+/* ==========================================================================
+   TIMELINE PROGRESS LINE CONNECTORS ENGINE
+   ========================================================================== */
+
+/* Base Background Rail Track Line (Unselected Back Line) */
+.timeline-progress-bar {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    /* Ee primary base line colour ni mee subtle charcoal mix frame ki code chesa */
+    background-color: rgba(30, 28, 26, 0.42) !important; 
+    height: 3px; /* Slightly thicker premium visual balance line */
+    z-index: 1;
+    border-radius: 2px;
+}
+
+/* Active Progress Filler Line Track (Selected Colored Line) */
+.timeline-progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%; /* JavaScript calculation logic runtime parameters driver variable */
+    
+    /* Ee fill line directly dynamic luxury gold colour look map chesthundhi */
+    background-color: var(--accent-gold, #D4B28C) !important; 
+    
+    border-radius: 2px;
+    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Ultra fluid state changes matching active nodes */
+}
+
+.step-nodes-row {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+}
+/* ==========================================================================
+   PRIME SPAZIO EXCLUSIVE HIGH-CONTRAST STEPPER NODES STYLES
+   ========================================================================== */
+.step-node-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    /* Default structure configuration rules set to pure plain background matrix */
+    background-color: #FFFFFF !important;
+    border: 2px solid var(--pinterest-dark, #1E1C1A) !important;
+    color: var(--pinterest-dark, #1E1C1A) !important;
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ACTIVE STATE ONLY: Gold layout highlights running pattern rules */
+.step-node-btn.active-node {
+    background-color: var(--pinterest-dark) !important;
+    border-color: var(--accent-gold, #D4B28C) !important;
+    color:white !important;
+    box-shadow: 0 0 0 6px rgba(212, 178, 140, 0.3) !important;
+    transform: scale(1.08);
+}
+
+/* UNSELECTED PASSED/FUTURE NODES: Seamlessly preserved white style definitions */
+.step-node-btn.passed-node {
+    background-color: #FFFFFF !important;
+    border-color: rgba(30, 28, 26, 0.15) !important;
+    color: rgba(30, 28, 26, 0.5) !important;
+    transform: none;
+    box-shadow: none !important;
+}
+
+/* Interactive cursor hover overrides for secondary items */
+.step-node-btn.passed-node:hover {
+    border-color: var(--pinterest-dark, #1E1C1A) !important;
+    color: var(--pinterest-dark, #1E1C1A) !important;
+}
+
+/* Progress track backdrop base rail stabilization tuning metrics */
+.timeline-progress-bar {
+    background-color: rgba(30, 28, 26, 0.08) !important;
+}
+/* ==========================================================================
+   VIEWPORT SLIDES CARD PLATFORM STAGE LAYOUTS
+   ========================================================================== */
+.process-viewport-deck {
+    position: relative;
+    width: 100%;
+    min-height: 480px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    border: 1px solid var(--border-color, #E2E8F0);
+    box-shadow: 0 20px 50px rgba(30, 28, 26, 0.04);
+    padding: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.process-slide-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 60px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(30px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.5s ease;
+    display: flex;
+    align-items: center;
+}
+
+.process-slide-card.active-slide {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+/* Split Column Grid Design Mechanics */
+.slide-split-content {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    width: 100%;
+    align-items: center;
+}
+
+/* Left Side Structural Typography Elements */
+.slide-left-text {
+    position: relative;
+}
+
+.slide-numeric-prefix {
+    font-size: 5rem;
+    font-weight: 800;
+    color: rgba(212, 178, 140, 0.15); /* Luxury subtle backwater counting alpha tracking layer */
+    line-height: 1;
+    display: block;
+    margin-bottom: -15px;
+    font-family: serif;
+}
+
+.slide-main-heading {
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--pinterest-dark, #1E1C1A);
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+}
+
+.slide-description-para {
+    font-size: 1.15rem;
+    color: rgba(30, 28, 26, 0.7);
+    line-height: 1.75;
+    max-width: 520px;
+}
+
+/* Right Side Premium Sticker Element Layout Logic */
+.slide-right-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sticker-media-frame {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(30, 28, 26, 0.08);
+    background-color: var(--pinterest-light, #F4F1EA);
+    border: 6px solid #FFFFFF; /* High profile polaroid outer edge accent mask */
+    transform: rotate(2deg); /* Organic premium look deviation factor */
+    transition: transform 0.6s ease;
+}
+
+.process-slide-card.active-slide .sticker-media-frame {
+    transform: rotate(-1deg) scale(1.02); /* Mild transformation swing on entry layout */
+}
+
+.sticker-fluid-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   NAVIGATION ARROWS FLUID CONTROLLERS SYSTEM
+   ========================================================================== */
+.nav-control-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: var(--pinterest-dark, #1E1C1A);
+    color: #FFFFFF;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    z-index: 10;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.prev-arrow {
+    left: -26px; /* Perfect centered edge breakdown position setup */
+}
+
+.next-arrow {
+    right: -26px;
+}
+
+.nav-control-arrow:hover:not(:disabled) {
+    background-color: var(--accent-gold, #D4B28C);
+    color: var(--pinterest-dark, #1E1C1A);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.nav-control-arrow:disabled {
+    background-color: var(--border-color, #E2E8F0);
+    color: rgba(30, 28, 26, 0.2);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: translateY(-50%);
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUT CONSTRAINTS (MOBILE & TABLET TUNING)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .process-section {
+        padding: 90px 0;
+    }
+    .process-viewport-deck {
+        padding: 50px;
+        min-height: auto;
+    }
+    .slide-split-content {
+        gap: 40px;
+    }
+    .slide-main-heading {
+        font-size: 2rem;
+    }
+    .sticker-media-frame {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .process-section {
+        padding: 70px 0;
+    }
+    .process-title-text {
+        font-size: 2.2rem;
+    }
+    .timeline-tracker-outer {
+        margin-bottom: 60px;
+    }
+    .step-node-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 1rem;
+    }
+    .process-viewport-deck {
+        padding: 40px 30px;
+    }
+    
+    /* Stack components vertically on mobile screens layout matrix rules */
+    .slide-split-content {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        text-align: center;
+    }
+    .slide-description-para {
+        margin: 0 auto;
+    }
+    .slide-numeric-prefix {
+        font-size: 4rem;
+    }
+    .sticker-media-frame {
+        width: 220px;
+        height: 220px;
+        transform: none !important; /* Retain center flat rendering rules for micro screen sizes */
+    }
+    
+    /* Reposition arrow deck controls to bottom row navigation center layouts */
+    .nav-control-arrow {
+        top: auto;
+        bottom: -75px;
+        transform: none;
+    }
+    .nav-control-arrow:hover:not(:disabled) {
+        transform: scale(1.05);
+    }
+    .prev-arrow {
+        left: calc(50% - 65px);
+    }
+    .next-arrow {
+        right: calc(50% - 65px);
+    }
+    .process-master-container {
+        padding-bottom: 50px; /* Safe padding spacing rules margin addition for floating navigation controls */
+    }
+}
+
+@media (max-width: 480px) {
+    .process-master-container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .process-title-text {
+        font-size: 1.8rem;
+    }
+    .step-node-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+    .slide-main-heading {
+        font-size: 1.6rem;
+    }
+    .slide-description-para {
+        font-size: 1rem;
+    }
+    .sticker-media-frame {
+        width: 100%;
+        max-width: 200px;
+        height: 180px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   WHY CHOOSE US LAYOUT CORE STYLES
+   ========================================================================== */
+.why-choose-section {
+    width: 100%;
+    padding: 60px 0;
+    background-image: url('../images/bg.png'); /* System level plaster texture sync alignment */
+    background-size: cover;
+    background-repeat: repeat;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.why-choose-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(244, 241, 234, 0.94); /* Warm cream brand base transparency */
+    z-index: -1;
+    pointer-events: none;
+}
+
+.wcu-master-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Two Column Main Split Framework Configuration */
+.wcu-split-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* ==========================================================================
+   LEFT COLUMN NARRATIVE STACK COMPONENTS
+   ========================================================================== */
+.wcu-narrative-col {
+    position: relative;
+}
+
+.wcu-narrative-col .section-title-block {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.wcu-main-title {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--pinterest-dark, #1E1C1A);
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+    margin-top: 10px;
+}
+
+.wcu-lead-text {
+    font-size: 1.2rem;
+    line-height: 1.75;
+    color: rgba(30, 28, 26, 0.75);
+    margin-bottom: 45px;
+    max-width: 580px;
+    text-align: justify;
+}
+
+/* Row List Layout Matrix Setup */
+.wcu-points-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.wcu-point-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.wcu-point-item:hover {
+    transform: translateX(6px); /* Premium horizontal layout drift switch metrics */
+}
+
+/* Vector Rounded Icon Frame Modules */
+.wcu-point-icon-box {
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
+    background-color: var(--pinterest-dark, #1E1C1A);
+    color: var(--accent-gold, #D4B28C);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 8px 20px rgba(30, 28, 26, 0.06);
+    transition: all 0.35s ease;
+}
+
+.wcu-point-item:hover .wcu-point-icon-box {
+    background-color: var(--accent-gold, #D4B28C);
+    color: var(--pinterest-dark, #1E1C1A);
+    transform: rotate(-5deg);
+}
+
+.wcu-point-info {
+    flex: 1;
+}
+
+.wcu-point-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--pinterest-dark, #1E1C1A);
+    margin-bottom: 6px;
+    letter-spacing: -0.2px;
+}
+
+.wcu-point-desc {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: rgba(30, 28, 26, 0.65);
+}
+
+/* ==========================================================================
+   RIGHT COLUMN COMPOSITE GRAPHIC STAGE
+   ========================================================================== */
+.wcu-media-col {
+    position: relative;
+    width: 100%;
+}
+
+.wcu-image-composition-stage {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.wcu-hero-frame-wrapper {
+    width: 100%;
+    height: 540px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(30, 28, 26, 0.12);
+    border: 8px solid #FFFFFF;
+}
+
+.wcu-fluid-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.wcu-image-composition-stage:hover .wcu-fluid-img {
+    transform: scale(1.04);
+}
+
+/* Glassmorphic Metric Box Platforms Structural Blueprint */
+.wcu-stat-glass-badge {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 20px 40px rgba(30, 28, 26, 0.08);
+    width: 260px;
+    z-index: 5;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.stat-badge-top {
+    top: 0;
+    right: -40px;
+}
+
+.stat-badge-bottom {
+    bottom: -10px;
+    left: -40px;
+}
+
+.wcu-stat-glass-badge:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 30px 50px rgba(30, 28, 26, 0.15);
+}
+
+.stat-badge-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.stat-massive-num {
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--pinterest-dark, #1E1C1A);
+    font-family: serif;
+    line-height: 1;
+}
+
+.stat-sub-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: rgba(30, 28, 26, 0.75);
+    letter-spacing: -0.1px;
+}
+
+/* ==========================================================================
+   COMPREHENSIVE RESPONSIVE DESIGN (TABLET & MOBILE BREAKPOINTS)
+   ========================================================================== */
+
+/* Laptop Sizing & Layout Scales */
+@media (max-width: 1200px) {
+    .wcu-split-grid {
+        gap: 50px;
+    }
+    .wcu-main-title {
+        font-size: 2.4rem;
+    }
+    .stat-badge-top {
+        right: -20px;
+    }
+    .stat-badge-bottom {
+        left: -20px;
+    }
+}
+
+/* Medium Medium Tablet Screen Adaptations */
+@media (max-width: 1024px) {
+    .why-choose-section {
+        padding: 90px 0;
+    }
+    .wcu-split-grid {
+        grid-template-columns: 1fr; /* Switch to complete single stacked layout rail grid structure */
+        gap: 70px;
+    }
+    .wcu-narrative-col {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .wcu-image-composition-stage {
+        max-width: 440px;
+    }
+    .wcu-hero-frame-wrapper {
+        height: 480px;
+    }
+}
+
+/* Mobile Layout Configurations Viewports */
+@media (max-width: 768px) {
+    .why-choose-section {
+        padding: 70px 0;
+    }
+    .wcu-master-container {
+        padding: 0 30px;
+    }
+    .wcu-main-title {
+        font-size: 2rem;
+    }
+    .wcu-lead-text {
+        font-size: 1.1rem;
+        margin-bottom: 35px;
+    }
+    .wcu-point-title {
+        font-size: 1.2rem;
+    }
+    .wcu-point-desc {
+        font-size: 0.98rem;
+    }
+    .wcu-point-icon-box {
+        width: 48px;
+        height: 48px;
+        font-size: 1.3rem;
+    }
+}
+
+/* Micro Mobile Layout Scale Formats (480px nunchi ultra-low screen safety targets) */
+@media (max-width: 480px) {
+    .wcu-master-container {
+        padding: 0 20px;
+    }
+    .wcu-main-title {
+        font-size: 1.7rem;
+    }
+    .wcu-image-composition-stage {
+        max-width: 100%;
+        padding: 20px 0 80px 0; /* Add safety bottom rail space clearance parameters */
+    }
+    .wcu-hero-frame-wrapper {
+        height: 380px;
+        border: 5px solid #FFFFFF;
+    }
+    
+    /* Break floating badges layout architecture to dynamic centers to prevent element screen overflow crop clips */
+    .wcu-stat-glass-badge {
+        position: static !important; /* Kill dangerous absolute side overflows entirely */
+        width: 100%;
+        max-width: 280px;
+        margin: -30px auto 0 auto;
+        box-shadow: 0 15px 30px rgba(30, 28, 26, 0.06);
+    }
+    
+    .stat-badge-top {
+        margin-top: 25px; /* Separate layer blocks neatly stacked */
+    }
+    
+    .stat-massive-num {
+        font-size: 2.2rem;
+    }
+    .stat-sub-label {
+        font-size: 0.9rem;
+    }
+}
+
+/* Micro Device Baseline Stabilization (320px Viewport) */
+@media (max-width: 360px) {
+    .wcu-main-title {
+        font-size: 1.55rem;
+    }
+    .wcu-hero-frame-wrapper {
+        height: 320px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   PRIME SPAZIO DESIGN THEMES STYLES CORE ENGINE
+   ========================================================================== */
+.themes-master-section {
+    width: 100%;
+    padding: 40px 0;
+    /* Dynamic connection to theme concrete plaster wall textures */
+    background-size: cover;
+    background-repeat: repeat;
+    position: relative;
+    z-index: 1;
+}
+
+/* Warm Cream Overlay Platform Alignment Mapping */
+.themes-master-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(244, 241, 234, 0.95); /* Deep luxury cream tone integration */
+    z-index: -1;
+    pointer-events: none;
+}
+
+.themes-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Header Description Structural Layout Group */
+.themes-header-block {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 80px auto;
+}
+
+.themes-badge {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--accent-gold, #D4B28C); /* Target brand gold accent setup */
+    text-transform: uppercase;
+}
+
+.themes-main-title {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--pinterest-dark, #1E1C1A); /* Charcoal black heading definition */
+    margin: 12px 0 16px 0;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.themes-title-underline {
+    width: 70px;
+    height: 3px;
+    background-color: var(--accent-gold, #D4B28C); /* Accent color horizontal lines */
+    margin: 0 auto 24px auto;
+    border-radius: 2px;
+}
+
+.themes-lead-text {
+    font-size: 1.1rem;
+    color: rgba(30, 28, 26, 0.7); /* Deep grey clean soft reading colors */
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   THEMES METRIC MATRIX GRID INFRASTRUCTURE
+   ========================================================================== */
+.themes-grid-canvas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Split grid tracking layout rows */
+    gap: 30px;
+}
+
+/* Individual Card Structural Engine Frame */
+.theme-card-node {
+    background-color: #FFFFFF;
+    border: 1px solid var(--border-color, #E2E8F0); /* Minimal sleek perimeter outline */
+    border-radius: 24px;
+    padding: 35px;
+    display: flex;
+    gap: 26px;
+    align-items: flex-start;
+    box-shadow: 0 8px 30px rgba(30, 28, 26, 0.02);
+    transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Micro-interaction Glass Hover Level Transformation Effects */
+.theme-card-node:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-gold, #D4B28C); /* Outlines dynamic change to gold style */
+    box-shadow: 0 20px 45px rgba(30, 28, 26, 0.07);
+}
+
+/* Card Metadata Icon Stage Mechanics */
+.theme-visual-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.theme-icon-shield {
+    width: 65px;
+    height: 65px;
+    background-color: var(--pinterest-light, #F4F1EA); /* Soft cream inner shield platform background */
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    color: var(--pinterest-dark, #1E1C1A); /* Primary brand dark icon alignment */
+    transition: all 0.4s ease;
+}
+
+/* Accent highlight swaps when node element target is triggered */
+.theme-card-node:hover .theme-icon-shield {
+    background-color: var(--pinterest-dark, #1E1C1A); /* Dark background inverse action */
+    color: var(--accent-gold, #D4B28C); /* Text features golden highlights */
+}
+
+.theme-index-num {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: rgba(30, 28, 26, 0.35); /* Elegant watermarked structural indexing markers */
+    letter-spacing: 1px;
+}
+
+/* Textual Content Alignment Rules */
+.theme-content-block {
+    flex-grow: 1;
+}
+
+.theme-card-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--pinterest-dark, #1E1C1A); /* Main dark typography */
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+    transition: color 0.3s ease;
+}
+
+.theme-card-node:hover .theme-card-title {
+    color: var(--accent-gold, #D4B28C); /* Clean luxury color shift on hover state activation */
+}
+
+.theme-card-desc {
+    font-size: 0.98rem;
+    color: rgba(30, 28, 26, 0.7); /* Clean line reading properties */
+    line-height: 1.55;
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE TUNING OVERRIDES
+   ========================================================================== */
+
+@media (max-width: 1150px) {
+    .themes-main-title { font-size: 2.3rem; }
+    .theme-card-node { padding: 28px; gap: 20px; }
+    .theme-icon-shield { width: 58px; height: 58px; font-size: 1.5rem; }
+}
+
+/* Tablet Screens Optimization Viewports (Compresses 2-columns grid parameters into ultra-scannable vertical lists) */
+@media (max-width: 991px) {
+    .themes-master-section { padding: 90px 0; }
+    .themes-header-block { margin-bottom: 60px; }
+    .themes-grid-canvas {
+        grid-template-columns: 1fr; /* Pure linear stack profile */
+        gap: 24px;
+    }
+}
+
+/* Handheld Smartphone Core Target Media Settings */
+@media (max-width: 768px) {
+    .themes-container { padding: 0 30px; }
+    .themes-main-title { font-size: 2rem; }
+    .themes-lead-text { font-size: 1rem; }
+    
+    .theme-card-node { 
+        padding: 24px; 
+        gap: 18px; 
+        border-radius: 20px; 
+    }
+    .theme-icon-shield { width: 52px; height: 52px; font-size: 1.35rem; border-radius: 12px; }
+    .theme-card-title { font-size: 1.2rem; margin-bottom: 8px; }
+    .theme-card-desc { font-size: 0.92rem; }
+}
+
+/* Micro Device Display Rules (<480px Interface Layers) */
+@media (max-width: 480px) {
+    .themes-master-section { padding: 70px 0; }
+    .themes-container { padding: 0 20px; }
+    .themes-main-title { font-size: 1.65rem; }
+    
+    /* Layout reflow for narrow viewports to stack structural info components properly */
+    .theme-card-node {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 22px;
+    }
+    
+    .theme-visual-meta {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .theme-index-num { order: 2; }
+    .theme-icon-shield { order: 1; width: 48px; height: 48px; font-size: 1.25rem; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   MATERIALS GALLERY - PRIME SPAZIO LUXURY STYLING
+   ========================================================================== */
+
+/* 1. Base Section Wrapper */
+.materials-section {
+    padding:40px 20px;
+     background-image: url('../images/bg.png');; /* Warm Luxury Base */
+    position: relative;
+    overflow: hidden;
+}
+
+/* 2. Heading Section Architecture */
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 2.8rem;
+    color: #1E1C1A; /* Charcoal Dark */
+    margin-bottom: 15px;
+    letter-spacing: -1px;
+}
+
+.section-header p {
+    color: rgba(30, 28, 26, 0.7);
+    font-size: 1.1rem;
+}
+
+/* 3. Grid Container */
+.materials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3-Column Desktop Layout */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 4. Card Styling (Glassmorphism & Clean Border) */
+.material-card {
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid #E2E8F0;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    text-align: center;
+    cursor: pointer;
+}
+
+.material-card:hover {
+    transform: translateY(-12px);
+    border-color: #D4B28C; /* Gold Accent on Hover */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* Image Wrapper Optimization */
+.img-wrapper {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-bottom: 18px;
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.material-card:hover img {
+    transform: scale(1.15);
+}
+
+/* Typography Inside Card */
+.material-card h3 {
+    font-size: 1.3rem;
+    color: #1E1C1A;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE TUNING
+   ========================================================================== */
+
+/* Tablet Screens (2-Column) */
+@media (max-width: 991px) {
+    .materials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile Screens (1-Column) */
+@media (max-width: 768px) {
+    .materials-section {
+        padding: 60px 20px;
+    }
+    .section-header h2 {
+        font-size: 2.1rem;
+    }
+    .materials-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .material-card {
+        padding: 15px;
+    }
+    .img-wrapper {
+        height: 200px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   WHY CHOOSE US - TRUST SECTION CORE ENGINE
+   ========================================================================== */
+.trust-master-section {
+    width: 100%;
+    padding: 40px 0 0 0; /* Marquee bottom lo untundi kabatti bottom padding zero */
+    background-image: url('../images/bg.png'); 
+    background-size: cover;
+    background-repeat: repeat;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.trust-master-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+  
+    z-index: -1;
+}
+
+.trust-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Heading Center Block Styling */
+.trust-header-block {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.trust-badge {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--accent-gold, #D4B28C);
+    text-transform: uppercase;
+}
+
+.trust-main-title {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--pinterest-dark, #1E1C1A);
+    margin: 10px 0 15px 0;
+    letter-spacing: -1px;
+}
+
+.title-underline {
+    width: 80px;
+    height: 3px;
+    background-color: var(--accent-gold, #D4B28C);
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* Icons Grid System */
+.trust-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Desktop lo smooth 6-column layout */
+    gap: 30px;
+    margin-bottom: 100px;
+}
+
+.metric-item {
+    text-align: center;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.metric-item:hover {
+    transform: translateY(-10px);
+}
+
+.metric-icon-frame {
+    width: 80px;
+    height: 80px;
+    background-color: #FFFFFF;
+    border: 1px solid var(--border-color, #E2E8F0);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px auto;
+    font-size: 2rem;
+    color: var(--pinterest-dark, #1E1C1A);
+    box-shadow: 0 10px 25px rgba(30, 28, 26, 0.05);
+    transition: all 0.3s ease;
+}
+
+.metric-item:hover .metric-icon-frame {
+    background-color: var(--pinterest-dark, #1E1C1A);
+    color: var(--accent-gold, #D4B28C);
+    border-color: var(--pinterest-dark, #1E1C1A);
+}
+
+.metric-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--pinterest-dark, #1E1C1A);
+    line-height: 1.4;
+}
+
+/* ==========================================================================
+   SEAMLESS MARQUEE CSS (Replaces old Marquee tag)
+   ========================================================================== */
+.brand-marquee-frame {
+    width: 100%;
+    background-color: var(--pinterest-dark, #1E1C1A);
+    padding: 25px 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.marquee-track-moving {
+    display: flex;
+    white-space: nowrap;
+    animation: primeScrollLoop 30s linear infinite;
+}
+
+.mq-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--pinterest-light, #F4F1EA);
+    margin-right: 60px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mq-item i {
+    color: var(--accent-gold, #D4B28C);
+    font-size: 1.2rem;
+}
+
+@keyframes primeScrollLoop {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE TUNING
+   ========================================================================== */
+@media (max-width: 1100px) {
+    .trust-metrics-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3x2 Grid for Tablets */
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .trust-master-section { padding-top: 80px; }
+    .trust-main-title { font-size: 2.1rem; }
+    .trust-metrics-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2-Column for Mobile */
+        gap: 30px;
+        margin-bottom: 70px;
+    }
+    .metric-icon-frame { width: 65px; height: 65px; font-size: 1.6rem; }
+    .metric-label { font-size: 0.9rem; }
+}
+
+@media (max-width: 480px) {
+    .trust-container { padding: 0 20px; }
+    .trust-main-title { font-size: 1.7rem; }
+    .mq-item { font-size: 0.9rem; margin-right: 40px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   CONTACT & MAP SECTION - ARCHITECTURAL LAYOUT ENGINE
+   ========================================================================== */
+
+/* Main Section Wrapper */
+.contact-section { 
+    padding: 40px 20px; 
+    background-color: #F4F1EA; /* Brand Warm Cream Base */
+}
+
+/* Flex/Grid Container for Equal Heights */
+.contact-container { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px; 
+    max-width: 1100px; 
+    margin: 0 auto; 
+    align-items: stretch; /* Rendu columns height equal ga untayi */
+}
+
+/* --- Left Column: Details & Map --- */
+.contact-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Map ni kindha ki push chesthundi */
+}
+
+.section-title { 
+    font-size: 2.2rem; 
+    color: #1E1C1A; 
+    margin-bottom: 20px; 
+}
+
+.info-list { display: flex; flex-direction: column; gap: 20px; }
+
+.info-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    font-size: 1.1rem; 
+    color: #444; 
+}
+
+.info-item i { color: #D4B28C; font-size: 1.5rem; }
+
+.map-box { 
+    margin-top: 30px; 
+    border-radius: 20px; 
+    overflow: hidden; 
+    height: 350px; /* Map fixed height */
+}
+
+/* --- Right Column: Form (White Card) --- */
+.contact-form-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Form center ki align avuthundi */
+}
+
+.input-group { position: relative; margin-bottom: 18px; }
+
+.input-group i { 
+    position: absolute; left: 15px; top: 50%; transform: translateY(-50%); 
+    color: #aaa; 
+}
+
+.contact-form-card input, select, textarea {
+    width: 100%; 
+    padding: 15px 15px 15px 45px;
+    border: 1px solid #eee; 
+    border-radius: 12px; 
+    background: #fafafa;
+    font-size: 1rem;
+}
+
+.submit-btn {
+    width: 100%; 
+    padding: 16px; 
+    background: #1E1C1A; 
+    color: #D4B28C;
+    border: none; 
+    border-radius: 12px; 
+    font-weight: 600; 
+    cursor: pointer;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 10px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.submit-btn:hover { background: #D4B28C; color: #1E1C1A; }
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE TUNING
+   ========================================================================== */
+
+/* Tablet View */
+@media (max-width: 991px) {
+    .contact-container { grid-template-columns: 1fr; }
+    .map-box { height: 250px; }
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+    .contact-section { padding: 60px 20px; }
+    .section-title { font-size: 1.8rem; text-align: center; }
+    .contact-form-card { padding: 25px; }
+    .info-list { align-items: center; }
+}
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   MASTER FOOTER STYLING
+   ========================================================================== */
+
+.footer-master {
+    background: #1E1C1A;
+    color: #FFFFFF;
+    padding: 80px 20px 30px 20px;
+}
+
+.footer-container {
+    display: grid;
+       grid-template-columns: 1.5fr 0.6fr 1.4fr 1.1fr;
+
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Headings */
+.footer-title { color: #D4B28C; font-size: 1.8rem; margin-bottom: 20px; }
+.footer-heading { 
+    color: #D4B28C; 
+    font-size: 1.1rem; 
+    margin-bottom: 25px; 
+    letter-spacing: 1px;
+}
+
+.brand-desc { color: #aaa; line-height: 1.6; text-align: justify;}
+
+/* Links & Info */
+.footer-links, .contact-info { list-style: none; padding: 0; }
+.footer-links li { margin-bottom: 12px; }
+.footer-links li a { color: #aaa; text-decoration: none; transition: 0.3s; }
+.footer-links li a:hover { color: #D4B28C; }
+
+.contact-info li { 
+    display: flex; gap: 10px; margin-bottom: 15px; color: #aaa; 
+}
+.contact-info li i { color: #D4B28C; font-size: 1.2rem; }
+
+/* Socials & Logo Group */
+.social-links { display: flex; gap: 15px; margin-bottom: 20px; }
+.social-links a {
+    background: #2a2a2a; width: 45px; height: 45px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    color: #fff; transition: 0.4s; text-decoration: none;
+}
+.social-links a:hover { background: #D4B28C; color: #1E1C1A; transform: scale(1.1); }
+
+/* Logo container width ni force cheddam */
+.footer-brand-logo { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    margin-top: 20px;
+    width: 100%; /* Parent container width ni fill cheyyali */
+}
+
+/* Image width ni force cheddam */
+.footer-brand-logo img {
+    width: 220px !important; /* Neeku kavalsina size ki ikkada penchu */
+    max-width: 100%;        /* Container kante peddaga avvakunda */
+    height: auto !important;
+    display: block;
+    filter: none;
+    transition: transform 0.3s ease;
+}
+.footer-brand-logo img:hover { transform: scale(1.05); }
+
+/* Footer Bottom */
+.footer-bottom { 
+    text-align: center; margin-top: 60px; padding-top: 20px; 
+    border-top: 1px solid #333; color: #666; 
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 991px) {
+    .footer-container { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 576px) {
+    .footer-container { grid-template-columns: 1fr; text-align: left; }
+    .footer-brand-logo { align-items: left; }
+    .contact-info li { justify-content: left; }
+    .social-links { justify-content: left; }
+    .brand-desc{text-align: justify;}
+}
