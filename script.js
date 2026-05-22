@@ -1,52 +1,74 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     const mobileToggleButton = document.getElementById('mobileToggleButton');
     const navMenu = document.getElementById('navMenu');
     const toggleIcon = mobileToggleButton.querySelector('i');
 
-    // 1. Mobile Menu Open/Close Logic
+    /* MOBILE MENU TOGGLE */
+
     mobileToggleButton.addEventListener('click', () => {
+
         navMenu.classList.toggle('active');
-        
-        // Change icon layout based on menu open/close status
+
         if (navMenu.classList.contains('active')) {
+
             toggleIcon.className = 'ri-close-line';
+
         } else {
+
             toggleIcon.className = 'ri-menu-3-line';
         }
     });
 
-    // 2. Mobile Responsive Click Event Handler for Sub-dropdown structures
+    /* MOBILE DROPDOWN */
+
     const dropdownTriggers = document.querySelectorAll('.dt-toggle');
 
     dropdownTriggers.forEach(trigger => {
-        trigger.addEventListener('click', (event) => {
-            // Mobile viewport conditions checking
-            if (window.innerWidth <= 1024) {
-                event.preventDefault(); // Links navigation lock on click for menu expand
-                const currentDropdownContainer = trigger.parentElement;
-                
-                // Toggle expansion class layer
-                currentDropdownContainer.classList.toggle('open');
+
+        trigger.addEventListener('click', function(event){
+
+            if(window.innerWidth <= 1024){
+
+                event.preventDefault();
+
+                // exact dropdown target
+                const dropdown =
+                    this.closest('.dropdown');
+
+                // close other dropdowns
+                document.querySelectorAll('.dropdown')
+                    .forEach(item => {
+
+                    if(item !== dropdown){
+                        item.classList.remove('open');
+                    }
+                });
+
+                // toggle current
+                dropdown.classList.toggle('open');
             }
         });
     });
 
-    // 3. Auto Close Mobile Drawer on Screen Size Rescale Actions
+    /* RESIZE RESET */
+
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 1024 && navMenu.classList.contains('active')) {
+
+        if(window.innerWidth > 1024){
+
             navMenu.classList.remove('active');
+
             toggleIcon.className = 'ri-menu-3-line';
-            
-            // Clean mobile state expanded classes
-            document.querySelectorAll('.dropdown').forEach(item => {
-                item.classList.remove('open');
-            });
+
+            document.querySelectorAll('.dropdown')
+                .forEach(item => {
+                    item.classList.remove('open');
+                });
         }
     });
+
 });
-
-
 
 // Initialize user entrance scroll monitor system
 AOS.init({

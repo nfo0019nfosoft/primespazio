@@ -1,0 +1,1243 @@
+/* Reset Core Base Layout Setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* DYNAMIC COLOR VARIABLES: 
+   Inka replace cheyadam chala easy! Ee parameters change chesthe core style continuous ga synchronize avthundi.
+*/
+:root {
+    --navbar-bg: #FFFFFF;         /* Pure white background for layout stability */
+    --pinterest-light: #F4F1EA;   /* Warm Cream/Beige structural background */
+    --pinterest-dark: black;    /* Deep Charcoal Brown / Black element focus */
+    --accent-gold:#c2b5a7;       /* Soft luxury wood tint / highlight effect */
+    --border-color: #E2E8F0;      /* Minimal slate subtle divider tint */
+}
+
+
+/* Header Container Logic */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--navbar-bg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    height: 90px;
+}
+
+/* Brand Logo Image Flex Alignment Layout Setup */
+.logo-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.brand-logo-img {
+    height: 75px;          /* Logo automatic view height boundary setup */
+    width: auto;           /* Aspect ratio balance maintaining parameter */
+    display: block;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+/* Subtle premium hover scale shift feedback response */
+.brand-logo-img:hover {
+    transform: scale(1.02);
+}
+
+/* Main Navigation Links Alignment Grid 
+   [CHANGE]: Justify-content padding balance core flex level mid shift layer wrapper handles tight layout.
+*/
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 100%;
+    margin-left: auto;     /* Pushes whole navigation group naturally next to the logo */
+    margin-right: 10px;    /* [FIXED]: Contact corner ki vellipokunda nav links system ni left ki center chesthundi */
+}
+
+.nav-links > li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.nav-item {
+    color: var(--pinterest-dark);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.92rem;
+    padding: 0 14px;       /* Spacing micro balanced across 9 items */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.3s ease;
+}
+
+.nav-item i {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+/* Active and Hover States Management */
+.nav-item:hover, .nav-item.active {
+    background-color: var(--pinterest-light);
+    color: var(--pinterest-dark);
+}
+
+/* Custom Dropdown System */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--navbar-bg);
+    min-width: 200px;
+    list-style: none;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    border-radius: 0 0 6px 6px;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 14px 20px;
+    color: var(--pinterest-dark);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.02);
+    transition: all 0.25s ease;
+}
+
+/* Dropdown Elements Background Hover Transition */
+.dropdown-menu li a:hover {
+    background-color: var(--pinterest-light);
+    padding-left: 25px; /* Premium smooth slide interaction */
+    color: var(--pinterest-dark);
+}
+
+
+
+
+
+@media (min-width: 1025px) {
+    .menu-toggle {
+        display: none; /* డెస్క్‌టాప్‌లో మెనూ ఐకాన్ వద్దు */
+    }
+
+    /* డెస్క్‌టాప్ డ్రాప్-డౌన్ */
+    .dropdown-menu {
+        position: absolute !important;
+        top: 100%;
+        left: 0;
+        background-color: #fff !important;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(15px);
+        transition: 0.3s ease;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 1024px) {
+    html, body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    header {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .navbar {
+        width: 100%;
+        height: 70px;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Logo */
+    .brand-logo-img {
+        height: 50px;
+        width: auto;
+    }
+
+    /* Hamburger Menu Icon */
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        cursor: pointer;
+        z-index: 2000;
+    }
+
+  
+    /* MOBILE MENU */
+
+    .nav-links{
+
+        position:fixed;
+
+        top:70px;
+
+        left:-100%;
+
+        width:100vw;
+
+        height:calc(100vh - 70px);
+
+        background:#fff;
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        padding:0;
+
+        margin:0;
+
+        overflow-y:auto;
+
+        overflow-x:hidden;
+
+        transition:0.4s ease;
+
+        z-index:1500;
+    }
+
+    .nav-links.active{
+
+        left:0;
+    }
+
+    .nav-links > li{
+
+        width:100%;
+
+        height:auto;
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    /* MOBILE MENU ITEMS */
+
+    .nav-item{
+
+        width:100%;
+
+        height:auto;
+
+        padding:18px 20px;
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:space-between;
+
+        border-bottom:1px solid #eeeeee;
+
+        font-size:15px;
+    }
+
+    /* MOBILE DROPDOWN */
+
+    .dropdown{
+
+        width:100%;
+    }
+
+    .dropdown-menu{
+
+        position:static !important;
+
+        width:100% !important;
+
+        max-height:0;
+
+        overflow:hidden;
+
+        opacity:1 !important;
+
+        visibility:visible !important;
+
+        transform:none !important;
+
+        background:#f8f8f8 !important;
+
+        border:none !important;
+
+        box-shadow:none !important;
+
+        transition:max-height 0.35s ease;
+    }
+
+    .dropdown.open .dropdown-menu{
+
+        max-height:600px;
+    }
+
+    .dropdown-menu li{
+
+        width:100%;
+    }
+
+    .dropdown-menu li a{
+
+        width:100%;
+
+        display:block;
+
+        padding:14px 42px;
+
+        font-size:14px;
+
+        color:#444;
+
+        background:#f8f8f8;
+
+        border-bottom:1px solid #ececec;
+    }
+
+    .dropdown.open .nav-item i{
+
+        transform:rotate(180deg);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* HERO SECTION CORE ENGINE SETUP 
+   Colors are connected to the main variable layers of your layout scheme 
+*/
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 8%;
+    /* Premium luxury furniture image setup link */
+    background: url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+    margin-top: 80px; /* Synchronizes height space for fixed desktop header */
+    overflow: hidden;
+}
+
+/* Linear color shading filter over background for high text readability focus */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(30, 28, 26, 0.85) 45%, rgba(30, 28, 26, 0.45) 100%);
+    z-index: 1;
+}
+
+/* Internal text alignment wrapper */
+.hero-container {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+}
+
+.hero-sub {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--accent-gold, #D4B28C);
+    display: block;
+    margin-bottom: 22px;
+    text-transform: uppercase;
+}
+
+.hero-title {
+    font-size: 3.8rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--pinterest-light, #F4F1EA);
+    margin-bottom: 38px;
+    letter-spacing: -0.5px;
+}
+
+/* Interactive Highlight Button Logic */
+.hero-actions {
+    display: flex;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--accent-gold, #D4B28C);
+    color: var(--pinterest-dark, #1E1C1A);
+    text-decoration: none;
+    padding: 16px 38px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 4px;
+    border: 1px solid var(--accent-gold, #D4B28C);
+    transition: all 0.35s ease;
+}
+
+.hero-btn i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+/* Elegant Scale & Outline Hover Shift Actions */
+.hero-btn:hover {
+    background-color: transparent;
+    color: var(--pinterest-light, #F4F1EA);
+    border-color: var(--pinterest-light, #F4F1EA);
+    box-shadow: 0 12px 30px rgba(212, 178, 140, 0.2);
+}
+
+.hero-btn:hover i {
+    transform: translateX(6px);
+}
+
+/* RESPONSIVE CONTROL GRAPH GRID (Handles Mobile Scalings Perfectly) */
+@media (max-width: 1024px) {
+    .hero-section {
+        padding: 0 5%;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .hero-overlay {
+        background: rgba(30, 28, 26, 0.75); /* Overall screen filter for portable items */
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        line-height: 1.3;
+    }
+    
+    .hero-actions {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.9rem;
+    }
+    .hero-btn {
+        padding: 14px 28px;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* About Section Engine with Plaster Wall Background Texture */
+.about-section {
+    position: relative;
+    width: 100%;
+    padding: 120px 0;
+    
+    /* Direct connection via precise path sequence mapping */
+    background-image: url('../images/bg.png') !important; 
+    background-repeat: repeat;
+    background-position: center center;
+    background-size: cover;
+    
+    color: var(--pinterest-dark, #1E1C1A);
+    overflow: hidden;
+    /* [FIX 1] Generates a solid stack index grid sequence on container */
+    z-index: 1; 
+}
+/* Subtle premium overlay to smoothly blend the text readability over the image texture */
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Blends the texture with your signature Pinterest light warm cream tone color */
+  
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Dynamic Core Row Alignment Grid Wrapper */
+.about-container {
+    position: relative;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 50px;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    z-index: 2; /* Content sits cleanly on top of the background overlay layer */
+}
+
+/* Left Grid Content Elements */
+.about-content-col {
+    flex: 1.2;
+}
+
+.about-tag {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--pinterest-dark);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.about-main-heading {
+    font-size: 2.2rem;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+}
+
+.about-main-heading strong {
+    font-weight: 700;
+    color: var(--pinterest-dark, #1E1C1A);
+}
+
+.about-para {
+    font-size: 1.05rem;
+    line-height: 1.75;
+      color: #120f0d;/* Dark premium graphite tone text layout for reading comfort */
+    margin-bottom: 24px;
+    text-align: justify;
+}
+
+.emphasis-text {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--pinterest-dark, #1E1C1A);
+    line-height: 1.7;
+}
+
+.final-quote {
+    margin-bottom: 0;
+    font-style: italic;
+    font-weight: 500;
+    border-left: 3px solid var(--pinterest-dark);
+    padding-left: 20px;
+    color: #1E1C1A;
+}
+
+/* Right Grid Architecture Picture Frame Setup */
+.about-image-col {
+    flex: 0.8;
+    display: flex;
+    justify-content: center;
+}
+
+.image-wrapper-frame {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 8px;
+    box-shadow: 0 30px 60px rgba(30, 28, 26, 0.15);
+}
+
+/* Luxury accent backing element lines styling */
+.image-wrapper-frame::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--pinterest-dark);
+    border-radius: 8px;
+    z-index: -1;
+    transition: all 0.4s ease;
+}
+
+.about-showcase-img {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+/* Absolute Floating Bottom Corner Brand Stamp Element */
+.luxury-badge {
+    position: absolute;
+    bottom: 30px;
+    left: -40px;
+    background-color: var(--pinterest-dark, #1E1C1A);
+    color: var(--pinterest-light, #F4F1EA);
+    padding: 15px 25px;
+    border-radius: 4px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.luxury-badge span {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Smooth Image Scale Interaction Setup */
+.image-wrapper-frame:hover .about-showcase-img {
+    transform: scale(1.03);
+}
+
+.image-wrapper-frame:hover::before {
+    top: -10px;
+    left: -10px;
+}
+
+/* MOBILE RESPONSIVE TUNING */
+@media (max-width: 1024px) {
+    .about-container {
+        flex-direction: column;
+        gap: 60px;
+        padding: 0 30px;
+    }
+
+    .about-main-heading {
+        font-size: 1.8rem;
+    }
+
+    .about-image-col {
+        width: 100%;
+    }
+
+    .about-showcase-img {
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-container {
+        padding: 0 20px;
+    }
+    
+    .luxury-badge {
+        left: 20px;
+        bottom: -20px;
+    }
+    
+    .image-wrapper-frame::before {
+        display: none; /* Safely drops outer wireframes on tight mobile view grids */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   MISSION & VISION SECTION — SAME PREMIUM PATTERN STYLE
+   ========================================================================== */
+
+.mission-vision-section{
+    width:100%;
+    padding:20px 0;
+    background-image:url('../images/bg.png');
+    background-size:cover;
+    background-repeat:repeat;
+    position:relative;
+    overflow:hidden;
+}
+
+.mission-vision-section::before{
+    content:'';
+    position:absolute;
+    inset:0;
+  
+    z-index:1;
+}
+
+.mv-container{
+    max-width:1300px;
+    margin:0 auto;
+    padding:0 40px;
+    position:relative;
+    z-index:2;
+}
+
+/* Heading */
+
+.mv-header{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.mv-badge{
+    font-size:0.9rem;
+    font-weight:700;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--accent-gold,#D4B28C);
+    display:block;
+    margin-bottom:14px;
+}
+
+.mv-title{
+    font-size:2.8rem;
+    font-weight:600;
+    color:var(--pinterest-dark,#1E1C1A);
+    letter-spacing:-1px;
+    line-height:1.2;
+}
+
+/* Grid */
+
+.mv-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:35px;
+}
+
+/* Card */
+
+.mv-card{
+    background:#fff;
+    border:1px solid var(--border-color,#E2E8F0);
+    border-radius:28px;
+    padding:45px;
+    position:relative;
+    overflow:hidden;
+    transition:all 0.45s cubic-bezier(0.25,1,0.5,1);
+    box-shadow:0 10px 30px rgba(30,28,26,0.04);
+}
+
+.mv-card:hover{
+    transform:translateY(-10px);
+    border-color:var(--accent-gold,#D4B28C);
+    box-shadow:0 25px 45px rgba(30,28,26,0.08);
+}
+
+/* Decorative top glow */
+
+.mv-card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:5px;
+    background:linear-gradient(
+        90deg,
+        var(--accent-gold,#D4B28C),
+        var(--pinterest-dark,#1E1C1A)
+    );
+}
+
+/* Icon */
+
+.mv-icon{
+    width:72px;
+    height:72px;
+    border-radius:20px;
+    background:var(--pinterest-light,#F4F1EA);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:28px;
+    transition:all 0.4s ease;
+}
+
+.mv-icon i{
+    font-size:2rem;
+    color:var(--pinterest-dark,#1E1C1A);
+    transition:all 0.4s ease;
+}
+
+.mv-card:hover .mv-icon{
+    background:var(--pinterest-dark,#1E1C1A);
+}
+
+.mv-card:hover .mv-icon i{
+    color:var(--accent-gold,#D4B28C);
+}
+
+/* Content */
+
+.mv-card h3{
+    font-size:2rem;
+    font-weight:600;
+    color:var(--pinterest-dark,#1E1C1A);
+    margin-bottom:18px;
+    letter-spacing:-0.5px;
+}
+
+.mv-card p{
+    font-size:1rem;
+    line-height:1.9;
+    color:rgba(30,28,26,0.72);
+    text-align:justify;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width:991px){
+
+    .mv-grid{
+        grid-template-columns:1fr;
+    }
+
+    .mv-title{
+        font-size:2.2rem;
+    }
+
+    .mv-card{
+        padding:38px;
+    }
+}
+
+@media (max-width:768px){
+
+    .mission-vision-section{
+        padding:65px 0;
+    }
+
+    .mv-container{
+        padding:0 22px;
+    }
+
+    .mv-header{
+        margin-bottom:45px;
+    }
+
+    .mv-title{
+        font-size:1.8rem;
+        line-height:1.35;
+    }
+
+    .mv-card{
+        padding:30px;
+        border-radius:22px;
+    }
+
+    .mv-icon{
+        width:60px;
+        height:60px;
+        border-radius:16px;
+    }
+
+    .mv-icon i{
+        font-size:1.6rem;
+    }
+
+    .mv-card h3{
+        font-size:1.5rem;
+    }
+
+    .mv-card p{
+        font-size:0.95rem;
+        line-height:1.8;
+    }
+}
+
+@media (max-width:480px){
+
+    .mission-vision-section{
+        padding:55px 0;
+    }
+
+    .mv-container{
+        padding:0 16px;
+    }
+
+    .mv-title{
+        font-size:1.45rem;
+    }
+
+    .mv-card{
+        padding:24px;
+    }
+
+    .mv-card h3{
+        font-size:1.25rem;
+    }
+
+    .mv-card p{
+        font-size:0.88rem;
+        line-height:1.75;
+    }
+
+    .mv-icon{
+        width:52px;
+        height:52px;
+    }
+
+    .mv-icon i{
+        font-size:1.3rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   ABOUT PAGE — ACHIEVEMENTS / EXPERIENCE SECTION
+   ========================================================================== */
+
+.about-achievement-section{
+    width:100%;
+    padding:40px 0;
+    background-image:url('../images/bg.png');
+    background-size:cover;
+    background-repeat:repeat;
+    position:relative;
+    overflow:hidden;
+}
+
+.about-achievement-section::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:rgba(244,241,234,0.94);
+    z-index:1;
+}
+
+.achievement-container{
+    max-width:1300px;
+    margin:0 auto;
+    padding:0 40px;
+    position:relative;
+    z-index:2;
+}
+
+/* =========================================================
+   TOP HEADING
+========================================================= */
+
+.achievement-header{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.achievement-badge{
+    font-size:0.9rem;
+    font-weight:700;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--accent-gold,#D4B28C);
+    display:block;
+    margin-bottom:14px;
+}
+
+.achievement-title{
+    font-size:2.8rem;
+    font-weight:600;
+    color:var(--pinterest-dark,#1E1C1A);
+    line-height:1.2;
+    letter-spacing:-1px;
+}
+
+.achievement-desc{
+    max-width:760px;
+    margin:18px auto 0;
+    font-size:1.05rem;
+    line-height:1.8;
+    color:rgba(30,28,26,0.72);
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.achievement-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:28px;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.achievement-card{
+    background:#fff;
+    border:1px solid var(--border-color,#E2E8F0);
+    border-radius:26px;
+    padding:40px 28px;
+    text-align:center;
+    transition:all .45s cubic-bezier(0.25,1,0.5,1);
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(30,28,26,0.04);
+}
+
+.achievement-card:hover{
+    transform:translateY(-10px);
+    border-color:var(--accent-gold,#D4B28C);
+    box-shadow:0 25px 45px rgba(30,28,26,0.08);
+}
+
+/* top line */
+
+.achievement-card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:4px;
+    background:linear-gradient(
+        90deg,
+        var(--accent-gold,#D4B28C),
+        var(--pinterest-dark,#1E1C1A)
+    );
+}
+
+/* icon */
+
+.achievement-icon{
+    width:72px;
+    height:72px;
+    border-radius:20px;
+    background:var(--pinterest-light,#F4F1EA);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 24px;
+    transition:all .4s ease;
+}
+
+.achievement-icon i{
+    font-size:2rem;
+    color:var(--pinterest-dark,#1E1C1A);
+    transition:all .4s ease;
+}
+
+.achievement-card:hover .achievement-icon{
+    background:var(--pinterest-dark,#1E1C1A);
+}
+
+.achievement-card:hover .achievement-icon i{
+    color:var(--accent-gold,#D4B28C);
+}
+
+/* numbers */
+
+.achievement-number{
+    font-size:3rem;
+    font-weight:700;
+    color:var(--pinterest-dark,#1E1C1A);
+    line-height:1;
+    margin-bottom:12px;
+    font-family:serif;
+}
+
+/* label */
+
+.achievement-label{
+    font-size:1rem;
+    font-weight:600;
+    line-height:1.5;
+    color:rgba(30,28,26,0.74);
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width:1024px){
+
+    .achievement-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .achievement-title{
+        font-size:2.2rem;
+    }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width:768px){
+
+    .about-achievement-section{
+        padding:70px 0;
+    }
+
+    .achievement-container{
+        padding:0 20px;
+    }
+
+    .achievement-header{
+        margin-bottom:45px;
+    }
+
+    .achievement-title{
+        font-size:1.8rem;
+        line-height:1.35;
+    }
+
+    .achievement-desc{
+        font-size:0.95rem;
+        line-height:1.8;
+    }
+
+    .achievement-grid{
+        grid-template-columns:1fr;
+        gap:22px;
+    }
+
+    .achievement-card{
+        padding:34px 24px;
+        border-radius:22px;
+    }
+
+    .achievement-icon{
+        width:62px;
+        height:62px;
+        border-radius:16px;
+    }
+
+    .achievement-icon i{
+        font-size:1.6rem;
+    }
+
+    .achievement-number{
+        font-size:2.4rem;
+    }
+
+    .achievement-label{
+        font-size:0.92rem;
+    }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width:480px){
+
+    .about-achievement-section{
+        padding:55px 0;
+    }
+
+    .achievement-container{
+        padding:0 15px;
+    }
+
+    .achievement-title{
+        font-size:1.45rem;
+    }
+
+    .achievement-card{
+        padding:28px 20px;
+    }
+
+    .achievement-number{
+        font-size:2rem;
+    }
+
+    .achievement-label{
+        font-size:0.85rem;
+    }
+
+    .achievement-icon{
+        width:54px;
+        height:54px;
+    }
+
+    .achievement-icon i{
+        font-size:1.3rem;
+    }
+}
