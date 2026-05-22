@@ -2268,7 +2268,7 @@ header {
     .contact-section { padding: 60px 20px; }
     .section-title { font-size: 1.8rem; text-align: center; }
     .contact-form-card { padding: 25px; }
-    .info-list { align-items: center; }
+    .info-list { align-items: left; }
 }
 
 
