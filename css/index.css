@@ -595,7 +595,7 @@ header {
 /* Popular Designs Core Base Grid */
 .popular-section {
     width: 100%;
-    padding: 120px 0;
+    padding: 50px 0;
     background-image: url('../images/bg.png'); 
     background-size: cover;
     background-repeat: repeat;
@@ -628,16 +628,16 @@ header {
 }
 
 .main-badge {
-    font-size: 1.1rem;
+    font-size: 2.0rem;
     font-weight: 700;
-    letter-spacing: 6px;
-    color: var(--accent-gold, #D4B28C);
+    letter-spacing: 1px;
+    color: black;
     text-transform: uppercase;
 }
 
 /* Master Category Stack Block Padding */
 .category-master-block {
-    margin-bottom: 80px;
+    margin-bottom: 50px;
 }
 
 .category-master-block:last-child {
@@ -658,7 +658,7 @@ header {
     font-size: 2.2rem;
     font-weight: 600;
     color: var(--pinterest-dark, #1E1C1A);
-    text-transform: capitalize;
+    text-transform: uppercase;
 }
 
 /* Layout Swiper Button Wrappers definitions */
@@ -2183,7 +2183,7 @@ header {
 }
 
 .section-title { 
-    font-size: 2.2rem; 
+    font-size: 2.0rem; 
     color: #1E1C1A; 
     margin-bottom: 20px; 
 }
