@@ -1,0 +1,914 @@
+/* Reset Core Base Layout Setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* DYNAMIC COLOR VARIABLES: 
+   Inka replace cheyadam chala easy! Ee parameters change chesthe core style continuous ga synchronize avthundi.
+*/
+:root {
+    --navbar-bg: #FFFFFF;         /* Pure white background for layout stability */
+    --pinterest-light: #F4F1EA;   /* Warm Cream/Beige structural background */
+    --pinterest-dark: black;    /* Deep Charcoal Brown / Black element focus */
+    --accent-gold:#c2b5a7;       /* Soft luxury wood tint / highlight effect */
+    --border-color: #E2E8F0;      /* Minimal slate subtle divider tint */
+}
+
+
+/* Header Container Logic */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--navbar-bg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    height: 90px;
+}
+
+/* Brand Logo Image Flex Alignment Layout Setup */
+.logo-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.brand-logo-img {
+    height: 75px;          /* Logo automatic view height boundary setup */
+    width: auto;   
+    margin-left: -20px;        /* Aspect ratio balance maintaining parameter */
+    display: block;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+/* Subtle premium hover scale shift feedback response */
+.brand-logo-img:hover {
+    transform: scale(1.02);
+}
+
+/* Main Navigation Links Alignment Grid 
+   [CHANGE]: Justify-content padding balance core flex level mid shift layer wrapper handles tight layout.
+*/
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 100%;
+    margin-left: auto;     /* Pushes whole navigation group naturally next to the logo */
+    margin-right: 10px;    /* [FIXED]: Contact corner ki vellipokunda nav links system ni left ki center chesthundi */
+}
+
+.nav-links > li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.nav-item {
+    color: var(--pinterest-dark);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 0 14px;       /* Spacing micro balanced across 9 items */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  
+    transition: all 0.3s ease;
+}
+
+.nav-item i {
+    font-size: 0.4rem;
+    transition: transform 0.3s ease;
+}
+
+/* Active and Hover States Management */
+.nav-item:hover, .nav-item.active {
+    background-color: var(--pinterest-light);
+    color: var(--pinterest-dark);
+}
+
+/* Custom Dropdown System */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--navbar-bg);
+    min-width: 200px;
+    list-style: none;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    border-radius: 0 0 6px 6px;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 14px 20px;
+    color: var(--pinterest-dark);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.02);
+    transition: all 0.25s ease;
+}
+
+/* Dropdown Elements Background Hover Transition */
+.dropdown-menu li a:hover {
+    background-color: var(--pinterest-light);
+    padding-left: 25px; /* Premium smooth slide interaction */
+    color: var(--pinterest-dark);
+}
+
+
+
+
+
+@media (min-width: 1025px) {
+    .menu-toggle {
+        display: none; /* డెస్క్‌టాప్‌లో మెనూ ఐకాన్ వద్దు */
+    }
+
+    /* డెస్క్‌టాప్ డ్రాప్-డౌన్ */
+    .dropdown-menu {
+        position: absolute !important;
+        top: 100%;
+        left: 0;
+        background-color: #fff !important;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(15px);
+        transition: 0.3s ease;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 1024px) {
+    html, body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    header {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .navbar {
+        width: 100%;
+        height: 70px;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Logo */
+    .brand-logo-img {
+        height: 50px;
+        width: auto;
+    }
+
+    /* Hamburger Menu Icon */
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        cursor: pointer;
+        z-index: 2000;
+    }
+
+  
+    /* MOBILE MENU */
+
+    .nav-links{
+
+        position:fixed;
+
+        top:70px;
+
+        left:-100%;
+
+        width:100vw;
+
+        height:calc(100vh - 70px);
+
+        background:#fff;
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        padding:0;
+
+        margin:0;
+
+        overflow-y:auto;
+
+        overflow-x:hidden;
+
+        transition:0.4s ease;
+
+        z-index:1500;
+    }
+
+    .nav-links.active{
+
+        left:0;
+    }
+
+    .nav-links > li{
+
+        width:100%;
+
+        height:auto;
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    /* MOBILE MENU ITEMS */
+
+    .nav-item{
+
+        width:100%;
+
+        height:auto;
+
+        padding:18px 20px;
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:space-between;
+
+        border-bottom:1px solid #eeeeee;
+
+        font-size:15px;
+    }
+
+    /* MOBILE DROPDOWN */
+
+    .dropdown{
+
+        width:100%;
+    }
+
+    .dropdown-menu{
+
+        position:static !important;
+
+        width:100% !important;
+
+        max-height:0;
+
+        overflow:hidden;
+
+        opacity:1 !important;
+
+        visibility:visible !important;
+
+        transform:none !important;
+
+        background:#f8f8f8 !important;
+
+        border:none !important;
+
+        box-shadow:none !important;
+
+        transition:max-height 0.35s ease;
+    }
+
+    .dropdown.open .dropdown-menu{
+
+        max-height:600px;
+    }
+
+    .dropdown-menu li{
+
+        width:100%;
+    }
+
+    .dropdown-menu li a{
+
+        width:100%;
+
+        display:block;
+
+        padding:14px 42px;
+
+        font-size:14px;
+
+        color:#444;
+
+        background:#f8f8f8;
+
+        border-bottom:1px solid #ececec;
+    }
+
+    .dropdown.open .nav-item i{
+
+        transform:rotate(180deg);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:system-ui;
+}
+
+html,
+body{
+    overflow-x:hidden;
+   
+}
+
+/* =========================
+   HOTEL PROJECT SECTION
+========================= */
+
+.hotel-project-section{
+    position:relative;
+
+    width:100%;
+
+    height:80vh;
+background-color: white;
+
+    margin-top:90px;
+
+    overflow:visible;
+}
+
+/* =========================
+   BACKGROUND IMAGE
+========================= */
+
+.hotel-project-section img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.hotel-overlay{
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(to bottom,
+    rgba(0,0,0,0.08),
+    rgba(0,0,0,0.55));
+}
+
+/* =========================
+   FLOATING CARD
+========================= */
+.hotel-project-card {
+    position: relative; /* absolute నుండి relative కి మార్చండి */
+    margin: -150px auto 0 auto; /* కార్డ్‌ను పైకి జరపడానికి నెగటివ్ మార్జిన్ వాడండి */
+    width: 88%;
+    max-width: 1100px;
+    background: #fff;
+    padding: 65px;
+    border-radius: 38px;
+    z-index: 10;
+    box-shadow: 0 35px 90px rgba(0,0,0,0.18);
+}
+
+/* =========================
+   SMALL TAG
+========================= */
+
+.project-tag{
+    display:inline-block;
+
+    color:#b79a78;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:7px;
+
+    margin-bottom:28px;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.hotel-project-card h1{
+    font-size:72px;
+
+    line-height:1.02;
+
+    color:#111;
+
+    margin-bottom:30px;
+
+    letter-spacing:-3px;
+}
+
+/* =========================
+   TOP DESCRIPTION
+========================= */
+
+.top-description{
+    font-size:20px;
+
+    line-height:2;
+
+    color:#555;
+
+    max-width:1200px;
+text-align: justify;
+    margin-bottom:40px;
+}
+
+/* =========================
+   FEATURE POINTS
+========================= */
+
+.project-features{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:14px;
+
+    margin-bottom:60px;
+
+    flex-wrap:nowrap;
+}
+
+/* =========================
+   FEATURE ITEM
+========================= */
+
+.feature-item{
+    flex:1;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    background:#f4f1ea;
+
+    padding:15px 18px;
+
+    border-radius:50px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:#222;
+
+    white-space:nowrap;
+
+    transition:.3s ease;
+}
+
+.feature-item:hover{
+    transform:translateY(-4px);
+}
+
+.feature-item i{
+    color:#b79a78;
+
+    font-size:14px;
+}
+
+/* =========================
+   MIDDLE CONTENT
+========================= */
+
+.hotel-middle-content{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:35px;
+
+    margin-bottom:60px;
+}
+
+/* =========================
+   CONTENT BOX
+========================= */
+
+.middle-left,
+.middle-right{
+    background:#faf8f5;
+
+    padding:38px;
+
+    border-radius:30px;
+}
+
+.middle-left h3,
+.middle-right h3{
+    font-size:30px;
+
+    color:#111;
+
+    margin-bottom:18px;
+}
+
+.middle-left p,
+.middle-right p{
+    font-size:16px;
+
+    line-height:2;
+
+    color:#666;
+}
+
+/* =========================
+   ICON GRID
+========================= */
+
+.hotel-info-grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:22px;
+}
+
+/* =========================
+   INFO BOX
+========================= */
+
+.hotel-info-box{
+    background:#f4f1ea;
+
+    padding:30px;
+
+    border-radius:26px;
+
+    transition:.4s ease;
+
+    min-height:230px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-start;
+}
+
+.hotel-info-box:hover{
+    transform:translateY(-8px);
+}
+
+/* =========================
+   ICON
+========================= */
+
+.hotel-icon{
+    width:68px;
+    height:68px;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:24px;
+
+    color:#111;
+
+    margin-bottom:22px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.hotel-info-box span{
+    display:block;
+
+    color:#777;
+
+    font-size:13px;
+
+    margin-bottom:12px;
+}
+
+/* =========================
+   HEADING
+========================= */
+
+.hotel-info-box h4{
+    font-size:22px;
+
+    color:#111;
+
+    line-height:1.4;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:992px){
+
+    .hotel-project-section{
+        height:115vh;
+    }
+
+    .hotel-project-card{
+        width:92%;
+
+        padding:45px 28px;
+
+        bottom:-260px;
+    }
+
+    .hotel-project-card h1{
+        font-size:46px;
+    }
+
+    .hotel-middle-content{
+        grid-template-columns:1fr;
+    }
+
+    .project-features{
+        flex-wrap:wrap;
+    }
+
+    .feature-item{
+        flex:none;
+
+        width:48%;
+    }
+
+    .hotel-info-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .hotel-project-section{
+        height:auto;
+
+        padding-bottom:520px;
+    }
+
+    .hotel-project-card{
+        width:92%;
+
+        padding:35px 22px;
+
+        bottom:-420px;
+    }
+
+    .hotel-project-card h1{
+        font-size:36px;
+
+        letter-spacing:-1px;
+    }
+
+    .top-description{
+        font-size:16px;
+        text-align: justify;
+
+        line-height:1.8;
+    }
+
+    .feature-item{
+        width:100%;
+    }
+
+    .hotel-info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hotel-info-box h4{
+        white-space:normal;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   LUXURY GALLERY SECTION
+========================= */
+.luxury-gallery-section {
+    padding: 1100px 5% 5% 5%;
+   background-color: rgba(244, 241, 234, 0.88);
+}
+
+.gallery-heading {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.gallery-heading span {
+    color: #b79a78;
+    letter-spacing: 5px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.gallery-heading h2 {
+    font-size: 48px;
+    margin-top: 10px;
+}
+
+/* Masonry Grid Setup */
+.masonry-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: 250px;
+    grid-auto-flow: dense;
+    gap: 20px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Sizing for Masonry effect */
+.gallery-item.tall {
+    grid-row: span 2;
+}
+
+.gallery-item.medium {
+    grid-row: span 1;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .masonry-gallery {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+
+
+
+
+
+.owner-feedback-section {
+    padding: 50px 5%;
+    background: #fdfdfd;
+     background-image: url('../images/bg.png'); 
+    background-size: cover;
+    background-repeat: repeat;
+    position: relative;
+    z-index: 1;
+}
+
+.section-title {
+    font-size: 36px;
+    margin-bottom: 40px;
+    text-align: center;
+    color: #111;
+}
+
+.owner-feedback-card {
+    background-color: rgba(244, 241, 234, 0.88);
+    padding: 60px;
+    border-radius: 40px;
+    border: 1px solid #eee;
+    position: relative;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.04);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.quote-icon {
+    position: absolute;
+    top: 40px;
+    right: 50px;
+    font-size: 50px;
+    color: black;
+}
+
+.owner-header h3 { font-size: 24px; color: #111; }
+.company-name { color: #b79a78; font-weight: 600; font-size: 14px; letter-spacing: 1px; }
+
+.stars { color: #f8c146; margin: 15px 0 30px 0; font-size: 14px; }
+
+.feedback-content p {
+    font-size: 18px;
+    line-height: 1.9;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .owner-feedback-card { padding: 30px; }
+    .quote-icon { font-size: 30px; top: 20px; right: 20px; }
+}
