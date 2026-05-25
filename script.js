@@ -1,8 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const mobileToggleButton = document.getElementById('mobileToggleButton');
-    const navMenu = document.getElementById('navMenu');
-    const toggleIcon = mobileToggleButton.querySelector('i');
+    const mobileToggleButton =
+        document.getElementById('mobileToggleButton');
+
+    const navMenu =
+        document.getElementById('navMenu');
+
+    const toggleIcon =
+        mobileToggleButton.querySelector('i');
 
     /* MOBILE MENU TOGGLE */
 
@@ -10,11 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         navMenu.classList.toggle('active');
 
-        if (navMenu.classList.contains('active')) {
+        if(navMenu.classList.contains('active')){
 
             toggleIcon.className = 'ri-close-line';
 
-        } else {
+        }else{
 
             toggleIcon.className = 'ri-menu-3-line';
         }
@@ -22,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* MOBILE DROPDOWN */
 
-    const dropdownTriggers = document.querySelectorAll('.dt-toggle');
+    const dropdownTriggers =
+        document.querySelectorAll('.dt-toggle');
 
     dropdownTriggers.forEach(trigger => {
 
@@ -32,21 +38,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 event.preventDefault();
 
-                // exact dropdown target
+                // current dropdown
                 const dropdown =
                     this.closest('.dropdown');
 
                 // close other dropdowns
                 document.querySelectorAll('.dropdown')
-                    .forEach(item => {
+                .forEach(item => {
 
                     if(item !== dropdown){
+
                         item.classList.remove('open');
                     }
                 });
 
-                // toggle current
+                // toggle current dropdown
                 dropdown.classList.toggle('open');
+            }
+        });
+    });
+
+    /* CLOSE MOBILE MENU AFTER CLICK */
+
+    const mobileLinks =
+        document.querySelectorAll('.nav-item-link');
+
+    mobileLinks.forEach(link => {
+
+        link.addEventListener('click', () => {
+
+            if(window.innerWidth <= 1024){
+
+                navMenu.classList.remove('active');
+
+                toggleIcon.className =
+                    'ri-menu-3-line';
             }
         });
     });
@@ -59,17 +85,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             navMenu.classList.remove('active');
 
-            toggleIcon.className = 'ri-menu-3-line';
+            toggleIcon.className =
+                'ri-menu-3-line';
 
             document.querySelectorAll('.dropdown')
-                .forEach(item => {
-                    item.classList.remove('open');
-                });
+            .forEach(item => {
+
+                item.classList.remove('open');
+            });
         }
     });
 
 });
-
 // Initialize user entrance scroll monitor system
 AOS.init({
     duration: 1000,   /* Animation transitions load takes full 1 second speed */

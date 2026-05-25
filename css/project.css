@@ -1,209 +1,380 @@
-/* Reset Core Base Layout Setup */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
 }
 
-/* DYNAMIC COLOR VARIABLES: 
-   Inka replace cheyadam chala easy! Ee parameters change chesthe core style continuous ga synchronize avthundi.
-*/
-:root {
-    --navbar-bg: #FFFFFF;         /* Pure white background for layout stability */
-    --pinterest-light: #F4F1EA;   /* Warm Cream/Beige structural background */
-    --pinterest-dark: black;    /* Deep Charcoal Brown / Black element focus */
-    --accent-gold:#c2b5a7;       /* Soft luxury wood tint / highlight effect */
-    --border-color: #E2E8F0;      /* Minimal slate subtle divider tint */
+:root{
+
+    --navbar-bg:#ffffff;
+
+    --pinterest-light:#F4F1EA;
+
+    --pinterest-dark:#000000;
+
+    --accent-gold:#c2b5a7;
+
+    --border-color:#E2E8F0;
+}
+
+/* =========================
+   HEADER
+========================= */
+/* =========================
+   HEADER
+========================= */
+
+header{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    background:var(--navbar-bg);
+
+    box-shadow:0 4px 20px rgba(0,0,0,0.05);
+
+    z-index:1000;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+
+    max-width:1500px;
+
+    height:90px;
+
+    margin:auto;
+
+    padding:0 20px;   /* reduced */
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo-container{
+
+    display:flex;
+
+    align-items:center;
+
+    height:100%;
+
+    flex-shrink:0;
+}
+
+.brand-logo-img{
+
+    height:70px;   /* slightly reduced */
+
+    width:auto;
+
+    margin-left:-10px;
+
+    object-fit:contain;
+
+    transition:0.3s ease;
+}
+
+.brand-logo-img:hover{
+
+    transform:scale(1.02);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;   /* center */
+
+    list-style:none;
+
+    height:100%;
+
+    flex:1;
+
+    margin-left:40px;
+
+    padding:0;
+
+    gap:28px;   /* equal spacing for all */
+}
+.nav-links > li{
+
+    height:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    position:relative;
+}
+
+/* =========================
+   DESKTOP LINKS
+========================= */
+
+.nav-item{
+
+    color:var(--pinterest-dark);
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    font-size:15px;
+
+    padding:0 10px;   /* reduced */
+
+    height:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:2px;
+
+    white-space:nowrap;   /* IMPORTANT */
+
+    transition:0.3s ease;
+}
+
+.nav-item:hover,
+.nav-item.active{
+
+    background:var(--pinterest-light);
+}
+
+.nav-item i{
+
+    font-size:12px;
+
+    transition:0.3s ease;
+}
+
+/* =========================
+   DROPDOWN
+========================= */
+
+.dropdown-menu{
+
+    position:absolute;
+
+    top:100%;
+
+    left:0;
+
+    min-width:220px;
+
+    list-style:none;
+
+    background:#fff;
+
+    border:1px solid var(--border-color);
+
+    border-radius:0 0 6px 6px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(15px);
+
+    transition:0.3s ease;
+    margin-left: 10px;
+}
+
+.dropdown:hover .dropdown-menu{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+}
+
+.dropdown-menu li a{
+
+    display:block;
+
+    padding:14px 20px;
+
+    text-decoration:none;
+
+    color:#222;
+
+    font-size:14px;
+
+    border-bottom:1px solid rgba(0,0,0,0.03);
+
+    transition:0.25s ease;
+}
+
+.dropdown-menu li a:hover{
+
+    background:var(--pinterest-light);
+
+    padding-left:26px;
 }
 
 
-/* Header Container Logic */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--navbar-bg);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    z-index: 1000;
-}
+/* =========================
+   DESKTOP
+========================= */
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-    height: 90px;
-}
+@media(min-width:1025px){
 
-/* Brand Logo Image Flex Alignment Layout Setup */
-.logo-container {
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
-
-.brand-logo-img {
-    height: 75px;          /* Logo automatic view height boundary setup */
-    width: auto;   
-    margin-left: -20px;        /* Aspect ratio balance maintaining parameter */
-    display: block;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-}
-
-/* Subtle premium hover scale shift feedback response */
-.brand-logo-img:hover {
-    transform: scale(1.02);
-}
-
-/* Main Navigation Links Alignment Grid 
-   [CHANGE]: Justify-content padding balance core flex level mid shift layer wrapper handles tight layout.
-*/
-.nav-links {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    height: 100%;
-    margin-left: auto;     /* Pushes whole navigation group naturally next to the logo */
-    margin-right: 10px;    /* [FIXED]: Contact corner ki vellipokunda nav links system ni left ki center chesthundi */
-}
-
-.nav-links > li {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.nav-item {
-    color: var(--pinterest-dark);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.92rem;
-    padding: 0 14px;       /* Spacing micro balanced across 9 items */
-    height: 100%;
-    display: flex;
-    align-items: center;
-    gap: 2px;
-  
-    transition: all 0.3s ease;
-}
-
-.nav-item i {
-    font-size: 0.4rem;
-    transition: transform 0.3s ease;
-}
-
-/* Active and Hover States Management */
-.nav-item:hover, .nav-item.active {
-    background-color: var(--pinterest-light);
-    color: var(--pinterest-dark);
-}
-
-/* Custom Dropdown System */
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: var(--navbar-bg);
-    min-width: 200px;
-    list-style: none;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(15px);
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-    border-radius: 0 0 6px 6px;
-}
-
-.dropdown-menu li a {
-    display: block;
-    padding: 14px 20px;
-    color: var(--pinterest-dark);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 400;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.02);
-    transition: all 0.25s ease;
-}
-
-/* Dropdown Elements Background Hover Transition */
-.dropdown-menu li a:hover {
-    background-color: var(--pinterest-light);
-    padding-left: 25px; /* Premium smooth slide interaction */
-    color: var(--pinterest-dark);
-}
-
-
-
-
-
-@media (min-width: 1025px) {
-    .menu-toggle {
-        display: none; /* డెస్క్‌టాప్‌లో మెనూ ఐకాన్ వద్దు */
+    .menu-toggle{
+        display:none;
     }
 
-    /* డెస్క్‌టాప్ డ్రాప్-డౌన్ */
-    .dropdown-menu {
-        position: absolute !important;
-        top: 100%;
-        left: 0;
-        background-color: #fff !important;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(15px);
-        transition: 0.3s ease;
+    .navbar{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
     }
 
-    .dropdown:hover .dropdown-menu {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
+    .nav-links{
+        flex:1;
+        display:flex;
+        align-items:center;
+        justify-content:space-evenly; /* equal spaces */
+        gap:0;
+        margin-left:20px;
+        width:100%;
+    }
+
+    .nav-links > li{
+        flex:1;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .dropdown:hover .dropdown-menu{
+        opacity:1;
+        visibility:visible;
+        transform:translateY(0);
+    }
+
+    .mobile-nav-row{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        height:100%;
+        width:100%;
+    }
+
+    .nav-item-link,
+    .nav-item{
+        color:var(--pinterest-dark);
+        text-decoration:none;
+        font-weight:600;
+        font-size:14px;
+        padding:0 8px;
+        height:100%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        white-space:nowrap;
+        width:100%;
+        text-align:center;
+    }
+
+    .dt-toggle{
+        display:flex;
+        align-items:center;
+        height:100%;
+        padding-right:8px;
+        cursor:pointer;
+    }
+
+    .dt-toggle i{
+        font-size:14px;
     }
 }
+/* =========================
+   MOBILE
+========================= */
 
-@media (max-width: 1024px) {
-    html, body {
-        width: 100%;
-        overflow-x: hidden;
+@media(max-width:1024px){
+
+    html,
+    body{
+
+        width:100%;
+
+        overflow-x:hidden;
     }
 
-    header {
-        width: 100%;
-        overflow: hidden;
+    header{
+
+        overflow:hidden;
     }
 
-    .navbar {
-        width: 100%;
-        height: 70px;
-        padding: 0 16px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    .navbar{
+
+        width:100%;
+
+        height:70px;
+
+        padding:0 16px;
     }
 
-    /* Logo */
-    .brand-logo-img {
-        height: 50px;
-        width: auto;
+    /* LOGO */
+
+    .brand-logo-img{
+
+        height:50px;
+
+        margin-left:0;
     }
 
-    /* Hamburger Menu Icon */
-    .menu-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 28px;
-        cursor: pointer;
-        z-index: 2000;
+    /* HAMBURGER */
+
+    .menu-toggle{
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+        font-size:28px;
+
+        cursor:pointer;
+
+        z-index:2000;
     }
 
-  
     /* MOBILE MENU */
 
     .nav-links{
@@ -224,15 +395,15 @@ header {
 
         align-items:flex-start;
 
-        padding:0;
-
-        margin:0;
-
         overflow-y:auto;
 
         overflow-x:hidden;
 
         transition:0.4s ease;
+
+        margin:0;
+
+        padding:0;
 
         z-index:1500;
     }
@@ -255,15 +426,26 @@ header {
         align-items:flex-start;
     }
 
-    /* MOBILE MENU ITEMS */
+    /* NORMAL MOBILE LINKS */
 
     .nav-item{
 
         width:100%;
 
-        height:auto;
-
         padding:18px 20px;
+
+        border-bottom:1px solid #eee;
+
+        font-size:15px;
+
+        height:auto;
+    }
+
+    /* MOBILE DROPDOWN ROW */
+
+    .mobile-nav-row{
+
+        width:100%;
 
         display:flex;
 
@@ -271,9 +453,46 @@ header {
 
         justify-content:space-between;
 
-        border-bottom:1px solid #eeeeee;
+        border-bottom:1px solid #eee;
+    }
+
+    /* MAIN LINK */
+
+    .nav-item-link{
+
+        flex:1;
+
+        padding:18px 20px;
+
+        text-decoration:none;
+
+        color:#000;
 
         font-size:15px;
+
+        font-weight:600;
+    }
+
+    /* DROPDOWN ICON */
+
+    .dt-toggle{
+
+        padding:18px 20px;
+
+        cursor:pointer;
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+    }
+
+    .dt-toggle i{
+
+        font-size:20px;
+
+        transition:0.3s ease;
     }
 
     /* MOBILE DROPDOWN */
@@ -302,6 +521,8 @@ header {
         background:#f8f8f8 !important;
 
         border:none !important;
+
+        border-radius:0;
 
         box-shadow:none !important;
 
@@ -335,12 +556,11 @@ header {
         border-bottom:1px solid #ececec;
     }
 
-    .dropdown.open .nav-item i{
+    .dropdown.open .dt-toggle i{
 
         transform:rotate(180deg);
     }
 }
-
 
 
 
