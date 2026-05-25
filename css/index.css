@@ -3276,6 +3276,313 @@ header {
 
 
 
+
+
+
+
+
+
+
+/* =========================
+   OUR PROJECTS SECTION
+========================= */
+
+.our-projects-section{
+    padding:50px 50px;
+    background:var(--navbar-bg);
+}
+
+/* TOP */
+
+.projects-top{
+    max-width:980px;
+    margin:auto;
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.mini-title{
+    display:inline-block;
+    color:var(--accent-gold);
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:6px;
+    margin-bottom:26px;
+    position:relative;
+}
+
+.mini-title::after{
+    content:'';
+    width:65px;
+    height:2px;
+    background:var(--accent-gold);
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:-14px;
+}
+
+.projects-top h2{
+    font-size:48px;
+    line-height:1.1;
+    color:var(--pinterest-dark);
+    font-weight:700;
+    letter-spacing:-2px;
+    margin-bottom:24px;
+}
+
+.projects-top p{
+    max-width:860px;
+    margin:auto;
+    font-size:16px;
+    line-height:1.9;
+    color:#666;
+}
+
+/* GRID */
+
+.projects-grid{
+    max-width:1220px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+}
+
+/* CARD */
+
+.project-card{
+    position:relative;
+    height:420px;
+    border-radius:28px;
+    overflow:hidden;
+    text-decoration:none;
+    display:flex;
+    align-items:flex-end;
+    transition:.5s ease;
+}
+
+/* IMAGE */
+
+.project-card img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:1s ease;
+}
+
+/* OVERLAY */
+
+.project-overlay{
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(to top,
+    rgba(0,0,0,0.45),
+    rgba(0,0,0,0.45),
+    transparent);
+    opacity:0;
+    transition:.5s ease;
+}
+
+/* CONTENT */
+
+.project-content{
+    position:relative;
+    z-index:2;
+    width:100%;
+    padding:28px;
+    transform:translateY(105%);
+    transition:.6s ease;
+}
+
+/* BADGE */
+
+.project-badge{
+    display:inline-block;
+    padding:9px 16px;
+    border-radius:50px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.15);
+    color:#fff;
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:18px;
+    text-transform:uppercase;
+}
+
+/* TITLE */
+
+.project-content h3{
+    font-size:32px;
+    line-height:1.1;
+    color:#fff;
+    margin-bottom:16px;
+    font-weight:700;
+    letter-spacing:-1px;
+}
+
+/* TEXT */
+
+.project-content p{
+    font-size:14px;
+    line-height:1.8;
+    color:rgba(255,255,255,0.82);
+    margin-bottom:24px;
+}
+
+/* FEATURES */
+
+.project-features{
+    display:flex;
+    flex-direction:column;
+    gap:13px;
+    margin-bottom:26px;
+}
+
+.project-features div{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    color:#fff;
+    font-size:13px;
+    font-weight:500;
+}
+
+/* SHAPE */
+
+.project-features span{
+    width:13px;
+    height:13px;
+    background:var(--accent-gold);
+    border-radius:4px;
+    transform:rotate(45deg);
+    position:relative;
+    flex-shrink:0;
+}
+
+.project-features span::before{
+    content:'';
+    position:absolute;
+    inset:3px;
+    background:#fff;
+    border-radius:2px;
+}
+
+/* BUTTON */
+
+.view-details{
+    width:100%;
+    height:52px;
+    border-radius:60px;
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    color:#fff;
+    font-size:13px;
+    font-weight:600;
+    position:relative;
+    overflow:hidden;
+}
+
+/* WATER EFFECT */
+
+.view-details::before{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-100%;
+    width:100%;
+    height:100%;
+    background:var(--accent-gold);
+    transition:.45s ease;
+    z-index:-1;
+}
+
+.project-card:hover .view-details::before{
+    bottom:0;
+}
+
+/* HOVER */
+
+.project-card:hover img{
+    transform:scale(1.08);
+}
+
+.project-card:hover .project-overlay{
+    opacity:1;
+}
+
+.project-card:hover .project-content{
+    transform:translateY(0);
+}
+
+/* MOBILE */
+
+@media(max-width:992px){
+
+    .projects-grid{
+        grid-template-columns:1fr;
+    }
+
+    .projects-top h2{
+        font-size:42px;
+        letter-spacing:-1px;
+    }
+
+    .projects-top p{
+        font-size:16px;
+    }
+
+    .project-card{
+        height:440px;
+    }
+
+    .project-overlay{
+        opacity:1;
+    }
+
+    .project-content{
+        transform:translateY(0);
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ==========================================================================
    CONTACT & MAP SECTION - ARCHITECTURAL LAYOUT ENGINE
    ========================================================================== */
